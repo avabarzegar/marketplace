@@ -9,7 +9,29 @@
     <script src="js/script.js"></script>
     <title>Marketplace</title>
 </head>
-<body>
-    
+<body class="indexBody">
+    <div id="navBarContainer"></div>
+    <script>
+        // Fetch and insert navBar.html content
+        fetch('navBar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navBarContainer').innerHTML = html;
+            });
+    </script>
+    <div id="products">
+        <?php include 'productsListed.php'; ?>
+    </div>
+
+    <div id="footerContainer">
+    <script>
+        // Fetch and insert navBar.html content
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footerContainer').innerHTML = html;
+            });
+    </script>
+
 </body>
 </html>
