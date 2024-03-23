@@ -325,6 +325,14 @@ footer{
     text-transform: capitalize;
 }
 
+/** signupval javascript styling **/
+
+.error-message {
+    color: red;
+    margin-left: 5px;
+    z-index: 120;
+} 
+
 /** RESPONSIVE **/
 @media(max-width:1040px){
     /** NAVBAR **/
