@@ -5,7 +5,7 @@ function validate() {
     var username = document.getElementById('userName');
     var pass = document.getElementById('pass');
     // var is globally scoped and can be re-declared, let is block scoped and can't be re-declared in the same scope
-    //clearErrors();
+    clearErrors();
     
     var validForm = true;
 
@@ -32,7 +32,10 @@ function validate() {
     
 }
 
-form.addEventListener('submit', (e)=> {
+/*
+* Event Listener for submit button of sign.html. Will not allow submission if validate() function returns false. 
+*/
+form.addEventListener('submit', (e)=> { 
     let validForm = validate();
         if (!validForm) {
             e.preventDefault();
