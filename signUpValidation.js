@@ -1,9 +1,11 @@
+var form = document.querySelector('form');
+
 function validate() {
     var email = document.getElementById('email');
-    var username = document.getElementById('username');
+    var username = document.getElementById('userName');
     var pass = document.getElementById('pass');
     // var is globally scoped and can be re-declared, let is block scoped and can't be re-declared in the same scope
-    clearErrors();
+    //clearErrors();
     
     var validForm = true;
 
@@ -11,11 +13,12 @@ function validate() {
     if (!validateEmail(email.value)) {
         showError(email, 'X Email address should be non-empty with the format xyx@xyz.xyz');
         validForm = false;
+        console.log(validForm)
     }
 
     // username check
     if (username.value.trim() === "" || (username.value.length > 30)) {
-        showError(login,"X User name should be non-empty and within 30 characters.");
+        showError(username,"X User name should be non-empty and within 30 characters.");
         validForm = false;
     }
 
@@ -25,8 +28,16 @@ function validate() {
         validForm = false;
     }
 
-    return validForm; //returns true if everything is good
+    return validForm;  //returns true if everything is good
+    
 }
+
+form.addEventListener('submit', (e)=> {
+    let validForm = validate();
+        if (!validForm) {
+            e.preventDefault();
+        }
+})
 
 function showError(inputElement, errorMessage) { // this function displays an error message associated with a specific input element
     var errorElement = document.createElement("div"); // creates a new <div> element using the .createElement(). This displays the error message
@@ -47,3 +58,5 @@ function clearErrors() {
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+
+// -----------------------------------------------------
