@@ -1,10 +1,21 @@
 var form = document.querySelector('form');
+var email = document.getElementById('email');
+var username = document.getElementById('userName');
+var pass = document.getElementById('pass');
+// var is globally scoped and can be re-declared, let is block scoped and can't be re-declared in the same scope
+
+function validateUserName() {
+    let user = username.value.length;
+    if(user > 0 && user < 30) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
 function validate() {
-    var email = document.getElementById('email');
-    var username = document.getElementById('userName');
-    var pass = document.getElementById('pass');
-    // var is globally scoped and can be re-declared, let is block scoped and can't be re-declared in the same scope
+    
     clearErrors();
     
     var validForm = true;
@@ -13,7 +24,6 @@ function validate() {
     if (!validateEmail(email.value)) {
         showError(email, 'X Email address should be non-empty with the format xyx@xyz.xyz');
         validForm = false;
-        console.log(validForm)
     }
 
     // username check
@@ -33,13 +43,20 @@ function validate() {
 }
 
 /*
-* Event Listener for submit button of sign.html. Will not allow submission if validate() function returns false. 
+* Event Listener (e) for submit button of sign.html. Will not allow submission if validate() function returns false. 
 */
 form.addEventListener('submit', (e)=> { 
     let validForm = validate();
         if (!validForm) {
             e.preventDefault();
         }
+})
+
+username.addEventListener('input', ()=> {
+    let validForm = validateUserName();
+    if(validForm === true) {
+        /*** INCOMPLETE. Needs function to clear correspending error message a time*/
+    }
 })
 
 function showError(inputElement, errorMessage) { // this function displays an error message associated with a specific input element
