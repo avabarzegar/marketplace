@@ -1,4 +1,3 @@
-// validation for signup
 function validate() {
     var email = document.getElementById('email');
     var username = document.getElementById('username');
