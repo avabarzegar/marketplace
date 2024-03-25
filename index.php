@@ -11,13 +11,36 @@
     <title>Marketplaces</title>
 </head>
 <body class="indexBody">
+
     <!-- adding navbar  -->
     <?php include("navBar.html") ?>
 
+    <?php 
+    require_once('db_credentials.php');
+    require_once('database.php');
+    
+    $db = db_connect();
+    ?>
+  
+    <?php
+      $sql = "SELECT * FROM products";
+
+      $result_set = mysqli_query($db, $sql);
+    ?>
+
     <main>
-      <div id="products">
-        <?php include 'productsListed.php'; ?>
-      </div>
+      <aside>
+
+      </aside>
+      <section class="container" id="products">
+        <?php while($results = mysqli_fetch_assoc($result_set)){ ?>
+          <div class="col card">
+            <p><?php echo $results['name'] ?></p>
+            <p><?php echo $results['price'] ?></p>
+            <p><?php echo $results['address'] ?></p>
+          </div>
+        <?php } ?>
+        </section>
     </main>
    
     <!-- adding footer  -->

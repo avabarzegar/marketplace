@@ -1,9 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "marketplace";
+require_once('db_credentials.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,17 +1,65 @@
+/* variables  */
+:root{
+    --bg-color: #000; 
+    --txt-color: #66FCF1;
+}
 /* INDEX */
 *{
-    background-color: #000;
+    background-color: var(--bg-color);
+    box-sizing: border-box;
 }
+
+body, html{
+    width: 100%;
+}
+
 .indexBody{ /*should be index later */
     background-color: black;
     background: url(/images/navBg.jpg) no-repeat;   
     background-size: cover; /* Image by flatart on Freepik: https://www.freepik.com/free-vector/abstract-blue-circle-black-background-technology_34386132.htm#query=dark%20website%20background&position=1&from_view=keyword&track=ais&uuid=33eaf209-ccdd-4e64-99d8-586b665f1733 */
     background-position: center;
     background-repeat: no-repeat;
-    color: #66FCF1;
+    color: var(--txt-color);
     margin: 0;
     padding: 0;
     min-height: 100vh;
+}
+
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+
+.col {
+    width: 100%;
+    padding: 0 15px;
+}
+
+
+/* cards  */
+#products{
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+}
+#products .card{
+    margin: 1.5rem;
+    padding: 1.5rem;
+}
+
+/* sidebar  */
+aside{
+    width: 30%;
 }
 
 /* NAVIGATION BAR */
@@ -30,7 +78,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
     z-index: 99;
     box-shadow: 0 0  10px #000;
     background: rgba(0, 0, 0, 0.5);
@@ -334,6 +381,20 @@ footer{
 } 
 
 /** RESPONSIVE **/
+
+ /* Medium screens */
+ @media (min-width: 768px) {
+    .col {
+        width: 50%;
+    }
+}
+
+/* Large screens */
+@media (min-width: 992px) {
+    .col {
+        width: 33.33%;
+    }
+}
 @media(max-width:1040px){
     /** NAVBAR **/
     .searchBar button{
