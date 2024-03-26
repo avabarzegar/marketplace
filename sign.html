@@ -6,10 +6,49 @@
     <!-- Adding Styles -->
     <link rel="stylesheet" href="style.css">
     <!-- Adding Javascript -->
+<<<<<<< HEAD
     <script src="js/script.js"></script>
     <title>Sign In</title>
 </head>
 <body>
     
+=======
+    <script src="signUpValidation.js" defer></script>
+    <title>Sign Up</title>
+</head>
+<body>
+    <body class="loginSignUpBody">
+    
+        <div class="loginSignUpWrapper" id="signUpWrapper">
+    
+            <div class="closeLoginSignUp"><p>X</p></div>
+    
+            <div class="formLoginSignUp">
+                <h2>Sign Up</h2>
+                <form action="#" onsubmit="return validate();">
+                    <div class="loginSignUpInput">
+                        <input type="text" name="username" id="userName" >
+                        <label class="label" for="usernameName">Username</label>
+                    </div>
+
+                    <div class="loginSignUpInput">
+                        <input type="email" name="email" id="email" >
+                        <label class="label" for="email">Email</label>
+                    </div>
+    
+                    <div class="loginSignUpInput">
+                        <input type="password" name="pass" id="pass">
+                        <label class="label" for="password">Password</label>
+                    </div>
+    
+                    <button type="submit" class="signUpBtn">Sign Up</button>
+                    <div class="noAccount">
+                        <p id="noAccountText">You Have an account?</p>
+                        <a href="./log.html" class="LoginSignUpLink">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+>>>>>>> master
 </body>
 </html>

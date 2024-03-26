@@ -1,9 +1,21 @@
-// validation for signup
+var form = document.querySelector('form');
+var email = document.getElementById('email');
+var username = document.getElementById('userName');
+var pass = document.getElementById('pass');
+// var is globally scoped and can be re-declared, let is block scoped and can't be re-declared in the same scope
+
+function validateUserName() {
+    let user = username.value.length;
+    if(user > 0 && user < 30) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function validate() {
-    var email = document.getElementById('email');
-    var username = document.getElementById('username');
-    var pass = document.getElementById('pass');
-    // var is globally scoped and can be re-declared, let is block scoped and can't be re-declared in the same scope
+    
     clearErrors();
     
     var validForm = true;
@@ -16,7 +28,7 @@ function validate() {
 
     // username check
     if (username.value.trim() === "" || (username.value.length > 30)) {
-        showError(login,"X User name should be non-empty and within 30 characters.");
+        showError(username,"X User name should be non-empty and within 30 characters.");
         validForm = false;
     }
 
@@ -26,8 +38,26 @@ function validate() {
         validForm = false;
     }
 
-    return validForm; //returns true if everything is good
+    return validForm;  //returns true if everything is good
+    
 }
+
+/*
+* Event Listener (e) for submit button of sign.html. Will not allow submission if validate() function returns false. 
+*/
+form.addEventListener('submit', (e)=> { 
+    let validForm = validate();
+        if (!validForm) {
+            e.preventDefault();
+        }
+})
+
+username.addEventListener('input', ()=> {
+    let validForm = validateUserName();
+    if(validForm === true) {
+        /*** INCOMPLETE. Needs function to clear correspending error message a time*/
+    }
+})
 
 function showError(inputElement, errorMessage) { // this function displays an error message associated with a specific input element
     var errorElement = document.createElement("div"); // creates a new <div> element using the .createElement(). This displays the error message
@@ -49,18 +79,4 @@ function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// Search functionality
-
-$(document).ready(function () {
-    $('#search').on('keyup', function (e) {
-        let text = $(this).val();
-        $.ajax({
-            type: 'GET',
-            url: 'search.php', // Change the URL to the PHP file handling search
-            data: { search: text }, // Send search query as data
-            success: function (data) {
-                $('#products').html(data); // Replace content of #products with search results
-            }
-        });
-    });
-});
+// -----------------------------------------------------
