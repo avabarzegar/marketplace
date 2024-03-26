@@ -48,3 +48,19 @@ function clearErrors() {
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+
+// Search functionality
+
+$(document).ready(function () {
+    $('#search').on('keyup', function (e) {
+        let text = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: 'search.php', // Change the URL to the PHP file handling search
+            data: { search: text }, // Send search query as data
+            success: function (data) {
+                $('#products').html(data); // Replace content of #products with search results
+            }
+        });
+    });
+});

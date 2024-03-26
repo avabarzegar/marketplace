@@ -15,7 +15,6 @@ body, html{
 
 .indexBody{ /*should be index later */
     background-color: black;
-    background: url(/images/navBg.jpg) no-repeat;   
     background-size: cover; /* Image by flatart on Freepik: https://www.freepik.com/free-vector/abstract-blue-circle-black-background-technology_34386132.htm#query=dark%20website%20background&position=1&from_view=keyword&track=ais&uuid=33eaf209-ccdd-4e64-99d8-586b665f1733 */
     background-position: center;
     background-repeat: no-repeat;
@@ -25,35 +24,31 @@ body, html{
     min-height: 100vh;
 }
 
-
 .container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-
-.row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -15px;
 }
 
-
 .col {
-    width: 100%;
-    padding: 0 15px;
+    flex: 1 1 25%; /* Each column takes up 25% of the container width */
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
 }
 
 
 /* cards  */
 #products{
+    width: 70%;
     display: flex;
     justify-content: start;
     flex-direction: row;
 }
 #products .card{
-    margin: 1.5rem;
     padding: 1.5rem;
 }
 
@@ -131,7 +126,15 @@ i{
     background: #000000;
     color: #fff;
 }
-
+.log-btn{
+    display: flex;
+    flex-direction: row;
+}
+.log-btn a:first-child{
+    border-right: 1px solid var(--txt-color);
+    padding-right: 10px;
+    margin-right: 10px;
+}
 .navHeader .navigation{
     flex: 1;
     display: flex;
@@ -324,15 +327,11 @@ i{
     background-color: black;
 }
 footer{
-    position: absolute;
     height: auto;
-    width: 100vw;
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
     display: flex;
     flex-direction: column;
-    left: 0;
-    bottom: 0;
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -382,19 +381,6 @@ footer{
 
 /** RESPONSIVE **/
 
- /* Medium screens */
- @media (min-width: 768px) {
-    .col {
-        width: 50%;
-    }
-}
-
-/* Large screens */
-@media (min-width: 992px) {
-    .col {
-        width: 33.33%;
-    }
-}
 @media(max-width:1040px){
     /** NAVBAR **/
     .searchBar button{
@@ -423,6 +409,12 @@ footer{
     }
 }
 
+@media (max-width: 768px) {
+    .col {
+        flex: 1 1 50%; 
+    }
+}
+
 @media(max-width: 600px){
     /** NAV BAR **/
     .navHeader .logo{
@@ -440,3 +432,9 @@ footer{
     }
 }
 
+
+@media (max-width: 576px) {
+    .col {
+        flex: 1 1 100%; 
+    }
+}
