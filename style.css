@@ -1,19 +1,65 @@
+/* variables  */
+:root{
+    --bg-color: #000; 
+    --txt-color: #66FCF1;
+}
 /* INDEX */
 *{
-    background-color: #000;
+    background-color: var(--bg-color);
+    box-sizing: border-box;
 }
+
+body, html{
+    width: 100%;
+}
+
 .indexBody{ /*should be index later */
     background-color: black;
-    background: url(/images/navBg.jpg) no-repeat;   
     background-size: cover; /* Image by flatart on Freepik: https://www.freepik.com/free-vector/abstract-blue-circle-black-background-technology_34386132.htm#query=dark%20website%20background&position=1&from_view=keyword&track=ais&uuid=33eaf209-ccdd-4e64-99d8-586b665f1733 */
     background-position: center;
     background-repeat: no-repeat;
-    color: #66FCF1;
+    color: var(--txt-color);
     margin: 0;
     padding: 0;
     min-height: 100vh;
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1 1 25%; /* Each column takes up 25% of the container width */
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* cards  */
+#products{
+    width: 70%;
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+}
+#products .card{
+    padding: 1.5rem;
+}
+
+/* sidebar  */
+aside{
+    width: 30%;
+}
+
+aside .side-li{
+    list-style: none;
+}
 /* NAVIGATION BAR */
 .navBody{
     margin: 0;
@@ -30,7 +76,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
     z-index: 99;
     box-shadow: 0 0  10px #000;
     background: rgba(0, 0, 0, 0.5);
@@ -84,7 +129,15 @@ i{
     background: #000000;
     color: #fff;
 }
-
+.log-btn{
+    display: flex;
+    flex-direction: row;
+}
+.log-btn a:first-child{
+    border-right: 1px solid var(--txt-color);
+    padding-right: 10px;
+    margin-right: 10px;
+}
 .navHeader .navigation{
     flex: 1;
     display: flex;
@@ -277,15 +330,11 @@ i{
     background-color: black;
 }
 footer{
-    position: absolute;
     height: auto;
-    width: 100vw;
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
     display: flex;
     flex-direction: column;
-    left: 0;
-    bottom: 0;
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -334,6 +383,7 @@ footer{
 } 
 
 /** RESPONSIVE **/
+
 @media(max-width:1040px){
     /** NAVBAR **/
     .searchBar button{
@@ -362,6 +412,12 @@ footer{
     }
 }
 
+@media (max-width: 768px) {
+    .col {
+        flex: 1 1 50%; 
+    }
+}
+
 @media(max-width: 600px){
     /** NAV BAR **/
     .navHeader .logo{
@@ -379,3 +435,10 @@ footer{
     }
 }
 
+
+@media (max-width: 576px) {
+    .col {
+        flex: 1 1 100%; 
+    }
+}
+s
