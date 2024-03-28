@@ -1,8 +1,8 @@
 <?php
 
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
+$username = "avayawing";
+$password = "marketplace-assingment2";
 $dbname = "marketplace";
 
 // Create connection

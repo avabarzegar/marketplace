@@ -9,29 +9,14 @@
     <script src="js/script.js"></script>
     <title>Marketplaces</title>
 </head>
+<?php include 'db-connection.php'; ?>
 <body class="indexBody">
-    <div id="navBarContainer"></div>
-    <script>
-        // Fetch and insert navBar.html content
-        fetch('navBar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navBarContainer').innerHTML = html;
-            });
-    </script>
+    <header class="navBar"><?php include 'navBar.html'; ?></header>
     <div id="products">
         <?php include 'productsListed.php'; ?>
     </div>
 
     <div id="footerContainer">
-    <script>
-        // Fetch and insert navBar.html content
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('footerContainer').innerHTML = html;
-            });
-    </script>
-
+    <footer class="footerIndex"><?php include 'footer.html'; ?></footer>
 </body>
 </html>
