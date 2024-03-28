@@ -33,6 +33,7 @@
 
     <main>
       <div class="main-container">
+
       <aside>
         <ul>
           <li class="side-li">
@@ -54,9 +55,11 @@
           <li class="side-li">Price</li>
         </ul>
       </aside>
+
       <section class="container" id="products">
         <?php while($results = mysqli_fetch_assoc($result_set)){ ?>
           <div class="col card">
+            <img src="<?php echo $results['image_path'] ?>" name="<?php echo $results['name'] ?>">
             <p><?php echo $results['name'] ?></p>
             <p><?php echo $results['price'] ?></p>
             <p><?php echo $results['address'] ?></p>

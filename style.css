@@ -14,6 +14,18 @@
     min-height: 100vh;
 }
 
+aside .side-li{
+    list-style: none;
+}
+
+/* sidebar  */
+aside{
+    width: 30%;
+}
+
+aside .side-li{
+    list-style: none;
+}
 /* NAVIGATION BAR */
 .navBody{
     margin: 0;
