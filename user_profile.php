@@ -70,13 +70,14 @@ if ($products_result && mysqli_num_rows($products_result) > 0) {
 </head>
 <body>
     <?php include("navBar.php") ?>
+    <section class="listingPageContainer">
     <div class="userProfilePage">
         <div class="userProfileSidebar">
             <h2>Your Information</h2>
             <p><strong>Name:</strong> <?php echo $users['Name']; ?></p>
             <p><strong>Email:</strong> <?php echo $users['Email']; ?></p>
             <a href="createListing.php"><button id="newListingButton">Create New Listing</button></a>';
-    </div>
+        </div>
 
     <div class="userProfileMainContent">
         <div class="productCardsContainer">
@@ -90,8 +91,8 @@ if ($products_result && mysqli_num_rows($products_result) > 0) {
                                 <p><strong>Category:</strong> <?php echo $product['category_name']; ?></p>
                                 <p><strong>Location:</strong> <?php echo $product['Location']; ?></p>
                                 <div class="productButtons">
-                                    <a href="editProduct.php?productID=<?php echo $product['ProductsID']; ?>"><button>Edit</button></a>
-                                    <button onclick="confirmDelete(<?php echo $product['ProductsID']; ?>)">Delete</button>
+                                    <a href="editProduct.php?productID=<?php echo $product['ProductID']; ?>"><button>Edit</button></a>
+                                    <button onclick="confirmDelete(<?php echo $product['ProductID']; ?>)">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -102,6 +103,7 @@ if ($products_result && mysqli_num_rows($products_result) > 0) {
             </div>
         </div>
     </div>
+    </section>
     <?php include("footer.html") ?>
 </body>
 </html>

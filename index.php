@@ -36,8 +36,8 @@
     
 
     <main>
-      <div class="main-container">
-        <div class="dashboardInIndex">
+      <div class="userProfileMainContent">
+        <div class="productCardsContainer">
             <?php include ("dashboard.php") ?>
         </div>
 
@@ -51,11 +51,14 @@
             $image_result = mysqli_query($db, $image_sql);
             $image_row = mysqli_fetch_assoc($image_result);
             ?>
-            
-            <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>">
-            <p><?php echo $results['Title'] ?></p>
-            <p><?php echo $results['Price'] ?></p>
-            <p><?php echo $results['Location'] ?></p>
+            <div class="productCard">
+              <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>">
+              <div class="productDetails">
+                <p><?php echo $results['Title'] ?></p>
+                <p><?php echo $results['Price'] ?></p>
+                <p><?php echo $results['Location'] ?></p>
+              </div>
+            </div>
           </div>
         <?php } ?>
 

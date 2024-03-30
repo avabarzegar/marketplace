@@ -36,9 +36,9 @@ CREATE TABLE products (
 -- Create images table with a single image per listing
 CREATE TABLE images (
     ImageID INT PRIMARY KEY AUTO_INCREMENT,
-    ProductsID INT UNIQUE,
+    ProductID INT UNIQUE,
     ImageURL VARCHAR(255),
-    FOREIGN KEY (ProductsID) REFERENCES products(ProductsID)
+    FOREIGN KEY (ProductID) REFERENCES products(ProductID)
 );
 
 -- relationships:
