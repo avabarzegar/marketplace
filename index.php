@@ -26,7 +26,6 @@
   
     <?php
       $sql = "SELECT * FROM products";
-
       $result_set = mysqli_query($db, $sql);
     ?>
     <?php
@@ -44,13 +43,19 @@
 
         <section class="container" id="productsInIndex">
         <?php while($results = mysqli_fetch_assoc($result_set)){ ?>
-          <div class="productCard">
-            <div class="productDetails">
-              <img src="<?php echo $results['imageURL'] ?>" alt="<?php echo $results['Title'] ?>">
-              <p><?php echo $results['Title'] ?></p>
-              <p><?php echo $results['Price'] ?></p>
-              <p><?php echo $results['Location'] ?></p>
-            </div>
+          <div class="col card">
+
+            <?php
+            // Fetching image URL for the current product
+            $image_sql = "SELECT ImageURL FROM images WHERE ProductID = {$results['ProductID']}";
+            $image_result = mysqli_query($db, $image_sql);
+            $image_row = mysqli_fetch_assoc($image_result);
+            ?>
+            
+            <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>">
+            <p><?php echo $results['Title'] ?></p>
+            <p><?php echo $results['Price'] ?></p>
+            <p><?php echo $results['Location'] ?></p>
           </div>
         <?php } ?>
 
