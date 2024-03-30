@@ -3,6 +3,10 @@
     --bg-color: #000; 
     --txt-color: #66FCF1;
 }
+/* DASHBOARD */
+#categoryOptions{
+    list-style: none;
+}
 /* INDEX */
 *{
     background-color: var(--bg-color);
@@ -24,41 +28,79 @@ body, html{
     min-height: 100vh;
 }
 
-.container {
+.main-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
 }
 
-.col {
+.dashboardInIndex{
+    border-right: 2px solid #fff ;
+    margin-right: 2%;
+}
+.productsInIndex .card {
     flex: 1 1 25%; /* Each column takes up 25% of the container width */
     padding: 10px;
     box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
-.main-container{
+.userProfileMainContent{
     display: flex;
     flex-direction: row;
 }
 
-
-/* cards  */
-#products{
+/* cards */
+#productsInIndex{
     width: 70%;
     display: flex;
     justify-content: start;
     flex-direction: row;
+    overflow: hidden;
 }
-#products .card{
+#productsInIndex .card{
     padding: 1.5rem;
 }
-
-/* sidebar  */
-aside{
-    width: 30%;
+.productCardsContainer{
+    display: flex;
+    flex-direction: row;
 }
 
+/* Product cards */
+.productCard{
+    border: 2px solid #66FCF1;
+    max-width: 32%;
+}
+.productCard img{
+    border-bottom: 2px #66FCF1;
+    width: 40%;
+    height: auto;
+}
+.productDetails{
+    padding: 10px;
+}
+.productDetails h3{
+    color: #66FCF1;
+    font-weight: 800;
+}
+.productDetails p strong{
+    color: #66FCF1;
+    font-weight: 500;
+}
+.productDetails p{
+    color: #fff;
+}
+
+/* sidebar 
+aside{
+    width: 30%;
+} */
+aside ul{
+    padding-left: 7%;
+}
 aside .side-li{
     list-style: none;
+
+    padding-bottom: 15%;
+    margin-right: 50%;
 }
 /* NAVIGATION BAR */
 .navBody{
@@ -220,9 +262,12 @@ i{
     justify-content: center;
     align-items: center;
     border-bottom: 20px;
-    cursor: pointer;
     z-index: 1;
     background: transparent;
+}
+.closeLoginSignUp a{
+    text-decoration: none;
+    color: inherit;
 }
 
 .formLoginSignUp h2{
@@ -382,6 +427,145 @@ footer{
     z-index: 120;
 } 
 
+/** create listing**/
+/** **/
+.newListingFormContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.newListingContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: #66FCF1;
+    justify-content: center;
+    align-items: center;
+    background: url(images/navBg.jpg) no-repeat;
+
+}
+.submitNewListing{
+    position: relative;
+    left: 40%;
+}
+#newListingh2{
+    color: #66FCF1;
+}
+
+.newListingInput{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vw;
+    font-size: 20px;
+}
+
+.image-upload-container {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    width: 50%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.image-upload {
+    width: 100%;
+}
+.image-upload-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.image-upload-label input[type="file"] {
+    display: none;
+} 
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+input[type="submit"] {
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #0e5a8a;
+}
+
+#newListingbody input[type="file"] {
+    display: none;
+}
+/* User profile with their available listings */
+.userProfilePage{
+    display: flex;
+    flex-direction: row;
+}
+.userProfileSidebar{
+    border-right: 2px solid #66FCF1;
+    margin-left: 1%;
+    padding-right: 5%;
+}
+.userProfileMainContent{
+    margin-left: 3%;
+}
+.userProfileMainContent h2, .userProfileSidebar h2{
+    color: #66FCF1;
+    font-weight: 900;
+}
+.userProfilePage strong{
+    color: #66FCF1;
+    font-weight: 800;
+}
+.userProfilePage p{
+    color: #fff;
+}
+.productButtons{
+    border: 2px solid #66FCF1;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    color: #fff;
+    padding: 7px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.productButtons a, .productButtons button{
+    color: #fff;
+    width: 110%;
+    height: auto;
+    border: 2px solid #66FCF1;
+    font-size: 16px;
+    cursor: pointer;
+}
+#newListingButton{
+    border: 2px solid #66FCF1;
+    font-size: 16px;
+    color: #fff;
+    padding: 7px;
+    cursor: pointer;
+}
 /** RESPONSIVE **/
 
 @media(max-width:1040px){
@@ -441,4 +625,3 @@ footer{
         flex: 1 1 100%; 
     }
 }
-s

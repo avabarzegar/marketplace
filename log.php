@@ -13,11 +13,11 @@
     
     <div class="loginSignUpWrapper">
 
-        <div class="closeLoginSignUp"><p>X</p></div>
+        <div class="closeLoginSignUp"><a href="./index.php">X</a></div>
 
         <div class="formLoginSignUp">
             <h2>Login</h2>
-            <form action="#" id="loginForm">
+            <form action="login_process.php" method="post" id="loginForm">
                 <div class="loginSignUpInput">
                     <input type="email" name="emailName" id="emailID">
                     <label class="label" for="email">Email</label>

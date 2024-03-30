@@ -42,5 +42,3 @@ INSERT INTO `products` (`name`, `address`, `price`, `image_path`) VALUES
 ('Hammer', '432 Birch Road, Halifax, NS', 15.00, 'C:\xampp\htdocs\marketplace-master\images\hammer.jpg'),
 ('Drill', '654 Spruce Lane, Winnipeg, MB', 80.00, 'C:\xampp\htdocs\marketplace-master\images\drill.jpg'),
 ('Screwdriver Set', '987 Birchwood Drive, Quebec City, QC', 30.00, 'C:\xampp\htdocs\marketplace-master\images\screw.jpg');
-
-

@@ -11,6 +11,7 @@
     <script src="js/script.js"></script>
     <title>Marketplaces</title>
 </head>
+
 <body class="indexBody">
 
     <!-- adding navbar  -->
@@ -28,50 +29,35 @@
 
       $result_set = mysqli_query($db, $sql);
     ?>
-
+    <?php
+      // Fetch categories from the database
+      $categoriesOptionsSql = "SELECT * FROM categories";
+      $categoriesOptionsResult_set = mysqli_query($db, $categoriesOptionsSql);
+    ?>
     
 
     <main>
       <div class="main-container">
+        <div class="dashboardInIndex">
+            <?php include ("dashboard.php") ?>
+        </div>
 
-      <aside>
-        <ul>
-          <li class="side-li">
-            <span><strong>Sort By</strong></span>
-            <select id="sort-by-select" value="Price">
-              <option value="price">Price</option>
-              <option value="popularity">Popularity</option>
-              <option value="date-added">Date Added</option>
-            </select>
-          </li>
-          <li class="side-li">
-          <span><strong>Categories</strong></span>
-            <select id="sort-by-select" value="Home">
-              <option value="home">Home</option>
-              <option value="clothes">Clothes</option>
-              <option value="vehicle">Date Added</option>
-            </select>
-          </li>
-          <li class="side-li">Price</li>
-        </ul>
-      </aside>
-
-      <section class="container" id="products">
+        <section class="container" id="productsInIndex">
         <?php while($results = mysqli_fetch_assoc($result_set)){ ?>
-          <div class="col card">
-            <img src="<?php echo $results['image_path'] ?>" name="<?php echo $results['name'] ?>">
-            <p><?php echo $results['name'] ?></p>
-            <p><?php echo $results['price'] ?></p>
-            <p><?php echo $results['address'] ?></p>
+          <div class="productCard">
+            <div class="productDetails">
+              <img src="<?php echo $results['imageURL'] ?>" alt="<?php echo $results['Title'] ?>">
+              <p><?php echo $results['Title'] ?></p>
+              <p><?php echo $results['Price'] ?></p>
+              <p><?php echo $results['Location'] ?></p>
+            </div>
           </div>
         <?php } ?>
 
-       
         
         </section>
-        </div>
-    </main>
-   
+      </div>
+    </main>   
     <!-- adding footer  -->
     <?php include("footer.html") ?>
 
