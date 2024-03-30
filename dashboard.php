@@ -11,30 +11,28 @@
     </head>
     <body>
     <aside>
-        <ul>
-        <li class="side-li">
+        <div class="sideSelect">
             <span><strong>Sort By</strong></span>
             <select id="sort-by-select" value="Price">
                 <option value="price">Price</option>
                 <option value="popularity">Popularity</option>
                 <option value="date-added">Date Added</option>
             </select>
-        </li>
-        <li class="side-li">
+        </div>
             <span><strong>Categories</strong></span>
-            <ul>
+            
             <?php while($category = mysqli_fetch_assoc($categoriesOptionsResult_set)) { ?>
-            <li>
+            <div class="side-filtering">
                 <input type="radio" name="category" id="categoryOptions"
                     value="<?php echo $category['CategoryID']; ?>"
                 />
                 <?php echo $category['Name']; ?>
-            </li>
+            </div>
             <?php } ?>
-            </ul>
-        </li>
-        <li class="side-li">Price</li>
-        </ul>
+          
+<!--         
+        <p class="side-li">Price</p> -->
+        
     </aside>
   </body>
 </html>

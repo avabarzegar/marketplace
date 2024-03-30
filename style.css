@@ -28,9 +28,21 @@ body, html{
     min-height: 100vh;
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
 .main-container {
     display: flex;
     flex-direction: row;
+}
+
+.col {
+    flex: 1 1 25%;
+    padding: 10px;
+    box-sizing: border-box; 
 }
 
 .dashboardInIndex{
@@ -42,15 +54,14 @@ body, html{
 .userProfileMainContent{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 /* cards */
 #productsInIndex{
-    width: 70%;
     display: flex;
     justify-content: start;
     flex-direction: row;
-    overflow: hidden;
 }
 #productsInIndex .card{
     padding: 1.5rem;
@@ -58,14 +69,15 @@ body, html{
 .productCardsContainer{
     display: flex;
     flex-direction: row;
+    border-left: 1px solid var(--txt-color);
 }
 
 /* Product cards */
 .productCard {
-    flex: 1 1 25%; 
     padding: 10px;
+    margin: 20px;
     box-sizing: border-box; 
-    border: 2px solid #66FCF1;
+    border: 2px solid var(--txt-color);
 }
 
 .productCard img{
@@ -88,10 +100,10 @@ body, html{
     color: #fff;
 }
 
-/* sidebar 
+/* sidebar  */
 aside{
-    width: 30%;
-} */
+    padding-right: 30px;
+} 
 aside ul{
     padding-left: 7%;
 }
@@ -101,6 +113,18 @@ aside .side-li{
     padding-bottom: 15%;
     margin-right: 50%;
 }
+aside .side-filtering{
+    display: flex;
+    flex-direction: row;
+}
+.sideSelect{
+    display: flex;
+    flex-direction: row;
+}
+#sort-by-select option{
+    color: #fff;
+}
+
 /* NAVIGATION BAR */
 .navBody{
     margin: 0;
@@ -525,14 +549,7 @@ input[type="submit"]:hover {
     display: flex;
     flex-direction: row;
 }
-.userProfileSidebar{
-    border-right: 2px solid #66FCF1;
-    margin-left: 1%;
-    padding-right: 5%;
-}
-.userProfileMainContent{
-    margin-left: 3%;
-}
+
 .userProfileMainContent h2, .userProfileSidebar h2{
     color: #66FCF1;
     font-weight: 900;
@@ -579,12 +596,7 @@ input[type="submit"]:hover {
     }
 
     .navHeader a{
-        position: fixed;
-        top: 100px;
-        right: -100%;
-        background: rgba(0, 0, 0, 0.5);
-        height: calc(100vh - 100px);
-        width: 50%;
+      
         flex-direction: column;
         align-items: center;
         transition: right 0.5s linear;
@@ -601,7 +613,7 @@ input[type="submit"]:hover {
 }
 
 @media (max-width: 768px) {
-    .productCard {
+    .col {
         flex: 1 1 50%; 
     }
 }
@@ -625,7 +637,10 @@ input[type="submit"]:hover {
 
 
 @media (max-width: 576px) {
-    .productCard {
+    .col {
         flex: 1 1 100%; 
     }
 }
+
+
+

@@ -37,13 +37,13 @@
 
     <main>
       <div class="userProfileMainContent">
-        <div class="productCardsContainer">
+        
             <?php include ("dashboard.php") ?>
-        </div>
-
-        <section class="container" id="productsInIndex">
+       
+<div class="productCardsContainer">
+        <section class="container" id="products">
         <?php while($results = mysqli_fetch_assoc($result_set)){ ?>
-          <div class="col card">
+          <div class="col productCard">
 
             <?php
             // Fetching image URL for the current product
@@ -51,19 +51,18 @@
             $image_result = mysqli_query($db, $image_sql);
             $image_row = mysqli_fetch_assoc($image_result);
             ?>
-            <div class="productCard">
-              <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>">
-              <div class="productDetails">
-                <p><?php echo $results['Title'] ?></p>
-                <p><?php echo $results['Price'] ?></p>
-                <p><?php echo $results['Location'] ?></p>
-              </div>
-            </div>
+            
+            <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>">
+            <p><?php echo $results['Title'] ?></p>
+            <p><?php echo $results['Price'] ?></p>
+            <p><?php echo $results['Location'] ?></p>
           </div>
         <?php } ?>
 
+       
         
         </section>
+        </div>
       </div>
     </main>   
     <!-- adding footer  -->

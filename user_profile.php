@@ -65,7 +65,9 @@ if ($products_result && mysqli_num_rows($products_result) > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Adding Styles -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>User Profile</title>
 </head>
 <body>
@@ -80,10 +82,10 @@ if ($products_result && mysqli_num_rows($products_result) > 0) {
         </div>
 
     <div class="userProfileMainContent">
-        <div class="productCardsContainer">
+        <div class="container productCardsContainer">
                 <?php if (!empty($products)) : ?>
                     <?php foreach ($products as $product) : ?>
-                        <div class="productCard">
+                        <div class="col productCard">
                             <img src="<?php echo $product['ImageURL']; ?>" alt="<?php echo $product['Title']; ?>">
                             <div class="productDetails">
                                 <h3><?php echo $product['Title']; ?></h3>
