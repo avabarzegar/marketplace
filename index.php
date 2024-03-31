@@ -1,3 +1,6 @@
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +15,9 @@
 
 <body class="indexBody">
 
+
     <!-- adding navbar  -->
-    <?php include("navBar.php") ?>
+    <?php include("navBar.php"); ?>
 
     <?php 
     require_once('db_credentials.php');
