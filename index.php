@@ -6,9 +6,7 @@
     <!-- Adding Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Adding Javascript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
-    <script src="js/script.js"></script>
+    
     <title>Marketplaces</title>
 </head>
 
@@ -19,7 +17,15 @@
 
     <?php 
     require_once('db_credentials.php');
-    require_once('database.php');
+    // require_once('database.php');
+    // Include User class 
+require_once 'Product.class.php'; 
+ 
+// Initialize User class 
+$product = new Product(); 
+ 
+// Get members data from database 
+$products = $product->getRows(); 
     
     $db = db_connect();
     ?>
@@ -39,25 +45,32 @@
       <div class="userProfileMainContent">
         
             <?php include ("dashboard.php") ?>
+            
        
 <div class="productCardsContainer">
+<div class="loading-overlay" style="display: none;"><div class="overlay-content">Loading.....</div></div>
         <section class="container" id="products">
-        <?php while($results = mysqli_fetch_assoc($result_set)){ ?>
+          <?php
+        if(!empty($products)){ $i = 0; 
+                foreach($products as $row){ $i++; 
+            ?>
           <div class="col productCard">
 
             <?php
             // Fetching image URL for the current product
-            $image_sql = "SELECT ImageURL FROM images WHERE ProductID = {$results['ProductID']}";
+            $image_sql = "SELECT ImageURL FROM images WHERE ProductID = {$row['ProductID']}";
             $image_result = mysqli_query($db, $image_sql);
             $image_row = mysqli_fetch_assoc($image_result);
             ?>
             
-            <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>">
-            <p><?php echo $results['Title'] ?></p>
-            <p><?php echo $results['Price'] ?></p>
-            <p><?php echo $results['Location'] ?></p>
+            <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $row['Title']; ?>">
+            <p><?php echo $row['Title'] ?></p>
+            <p><?php echo $row['Price'] ?></p>
+            <p><?php echo $row['Location'] ?></p>
           </div>
-        <?php } ?>
+          <?php } }else{ ?>
+            <h3>No product(s) found...</h3>
+            <?php } ?>
 
        
         
@@ -67,6 +80,9 @@
     </main>   
     <!-- adding footer  -->
     <?php include("footer.html") ?>
-
+    
+<!-- Adding Javascript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+    <script src="js/script.js"></script>
 </body>
 </html>

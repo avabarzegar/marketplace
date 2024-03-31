@@ -1,3 +1,28 @@
+
+// sidebar dropdown 
+const select = document.querySelector("aside .select");
+const options_list = document.querySelector(".options-list");
+const options = document.querySelectorAll(".option");
+
+//show & hide options list
+if(select){
+select.addEventListener("click", () => {
+  options_list.classList.toggle("active");
+  select.querySelector(".fa-angle-down").classList.toggle("fa-angle-up");
+});
+}
+
+//select option
+options.forEach((option) => {
+  option.addEventListener("click", () => {
+    options.forEach((option) => { option.classList.remove('selected') });
+    select.querySelector("span").innerHTML = option.innerHTML;
+    option.classList.add("selected");
+    options_list.classList.toggle("active");
+    select.querySelector(".fa-angle-down").classList.toggle("fa-angle-up");
+  });
+});
+
 // validation for signup
 function validate() {
     var email = document.getElementById('email');
@@ -51,16 +76,58 @@ function validateEmail(email) {
 
 // Search functionality
 
-$(document).ready(function () {
-    $('#search').on('keyup', function (e) {
-        let text = $(this).val();
-        $.ajax({
-            type: 'GET',
-            url: 'search.php', // Change the URL to the PHP file handling search
-            data: { search: text }, // Send search query as data
-            success: function (data) {
-                $('#products').html(data); // Replace content of #products with search results
-            }
-        });
+// $(document).ready(function () {
+//     // Search functionality
+//     $('#search').on('keyup', function (e) {
+//         let text = $(this).val();
+//         $.ajax({
+//             type: 'GET',
+//             url: 'search.php', // Change the URL to the PHP file handling search
+//             data: { search: text }, // Send search query as data
+//             success: function (data) {
+//                 $('#products').html(data); // Replace content of #products with search results
+//             }
+//         });
+//     });
+
+//    // Filter functionality 
+// // Listen for changes in the select dropdown
+// $('#sort-by-select').change(function() {
+//     var sortBy = $(this).val(); // Get the selected option value
+
+//     // Make AJAX request to fetch sorted data
+//     $.ajax({
+//         url: 'filter.php',
+//         type: 'GET',
+//         data: { sort_by: sortBy }, // Pass the sort_by parameter here
+//         dataType: 'json',
+//         success: function(data) {
+//             // Update HTML content with sorted data
+//             $('#products').html('');
+//             $.each(data, function(index, item) {
+//                 $('#products').append('<div>' + item.Title + ' - ' + item.Price + '</div>');
+//             });
+//         },
+//         error: function(xhr, status, error) {
+//             console.error(xhr.responseText);
+//         }
+//     });
+// });
+
+
+// });
+
+function searchFilter(){
+    $.ajax({
+        type: 'POST',
+        url: 'filter.php',
+        data: 'keywords='+$('#search').val()+'&filter='+$('#filterSelect').val()+'&category='+$('#categoryOptions'),
+        beforeSend: function(){
+            $('.loading-overlay').show();
+        },
+        success:function(html){
+            $('.loading-overlay').hide();
+            $('#products').html(html);
+        }
     });
-});
+}

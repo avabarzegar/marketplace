@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Adding Styles -->
-    <link rel="stylesheet" href="style.css" />
-    <!-- Adding Javascript -->
-    <script src="js/script.js"></script>
-    <title>Dashboard</title>
-    </head>
-    <body>
+
     <aside>
-        <div class="sideSelect">
-            <span><strong>Sort By</strong></span>
-            <select id="sort-by-select" value="Price">
-                <option value="price">Price</option>
-                <option value="popularity">Popularity</option>
-                <option value="date-added">Date Added</option>
-            </select>
+        <div class="select-menu">
+        <div class="select">
+            <span class="sort-head"><strong>Sort By</strong></span>
+            <i class="fas fa-angle-down"></i>
         </div>
-            <span><strong>Categories</strong></span>
+            <div class="options-list" id="filterSelect" onchange="searchFilter();" value="price">
+                <div class="option" value="new">New</div>
+                <div class="option" value="old">Old</div>
+                <div class="option" value="price">price</div>
+            </div>
+        </div>
+            <span class="cat-head"><strong>Categories</strong></span>
             
             <?php while($category = mysqli_fetch_assoc($categoriesOptionsResult_set)) { ?>
             <div class="side-filtering">
-                <input type="radio" name="category" id="categoryOptions"
+                <input type="radio"  name="category" id="categoryOptions" onchange="searchFilter();"
                     value="<?php echo $category['CategoryID']; ?>"
                 />
                 <?php echo $category['Name']; ?>
@@ -34,5 +26,4 @@
         <p class="side-li">Price</p> -->
         
     </aside>
-  </body>
-</html>
+ 
