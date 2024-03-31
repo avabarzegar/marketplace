@@ -47,12 +47,12 @@
 
             <?php
             // Fetching image URL for the current product
-            $image_sql = "SELECT ImageURL FROM images WHERE ProductID = {$results['ProductID']}";
+            $image_sql = "SELECT ImageURL FROM images WHERE ProductsID = {$results['ProductsID']}"; // Corrected the SQL statement. Was pointing to invalid tables. -Se-Wing
             $image_result = mysqli_query($db, $image_sql);
             $image_row = mysqli_fetch_assoc($image_result);
             ?>
             
-            <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>">
+            <img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $results['Title']; ?>"> <!--Corrected imageURL to ImageURL-->
             <p><?php echo $results['Title'] ?></p>
             <p><?php echo $results['Price'] ?></p>
             <p><?php echo $results['Location'] ?></p>

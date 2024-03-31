@@ -24,15 +24,30 @@
         $categoryID = $_POST['category'];
         $price = $_POST['price'];
         $location = $_POST['location'];
-        // Insert listing into the database
-        $insert_query = "INSERT INTO products (Title, Price, CategoryID, UserID, Location)
-        VALUES ('$title', '$price', '$categoryID', '{$_SESSION['UserID']}', '$location')";
+        $image = $_POST['image'];
 
+        /* Add variables to take into account image upload. Images are uploaded via $_FILE and not $_POST. -Se-Wing  */
+        $file_name = $_FILES['image']['name'];
+        $tempname = $_FILES['image']['tmp_name'];
+        $folder = 'images/'.$file_name;
+
+        if(move_uploaded_file($tempname, $folder)) { //temporary name for when image is submitted.
+
+            $imageURL = mysqli_real_escape_string($db, $folder); //escapes special characters so reduce vulnerabilities.
+            $query = "INSERT INTO images (imageURL) VALUES ('$imageURL')"; 
+        
+            if(mysqli_query($db, $query)) {
+                $last_inserted_id = mysqli_insert_id($db);
+        
+            // Insert listing into the database
+        $insert_query = "INSERT INTO products (Title, Price, CategoryID, UserID, Location, ImageURL)
+        VALUES ('$title', '$price', '$categoryID', '{$_SESSION['UserID']}', '$location', '$imageURL')";
+            }
         $result = mysqli_query($db, $insert_query);
         if ($result) {
         // Listing added successfully
         echo "<script>alert('Listing added successfully');</script>";
-        } else {
+        }} else {
         // Error adding listing
         echo "<script>alert('Error adding listing');</script>";
         }

@@ -93,8 +93,8 @@ if ($products_result && mysqli_num_rows($products_result) > 0) {
                                 <p><strong>Category:</strong> <?php echo $product['category_name']; ?></p>
                                 <p><strong>Location:</strong> <?php echo $product['Location']; ?></p>
                                 <div class="productButtons">
-                                    <a href="editProduct.php?productID=<?php echo $product['ProductID']; ?>"><button>Edit</button></a>
-                                    <button onclick="confirmDelete(<?php echo $product['ProductID']; ?>)">Delete</button>
+                                    <a href="editProduct.php?productID=<?php echo $product['ProductsID']; ?>"><button>Edit</button></a> <!--Corrected primary keys that prevented loading. ProductID -> ProductsID - Se-Wing-->
+                                    <button onclick="confirmDelete(<?php echo $product['ProductsID']; ?>)">Delete</button>  <!--Corrected primary keys that prevented loading. -Se-Wing-->
                                 </div>
                             </div>
                         </div>
