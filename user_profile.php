@@ -10,19 +10,7 @@ if (!isset($_SESSION['UserID'])) {
     exit(); // Stop script execution
 }
 
-// Include your database connection file
-$servername = "localhost";
-$username = "avayawing";
-$password = "marketplace-assingment2";
-$dbname = "marketplace";
-
-// Define database connection constants
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once('database.php');
 
 // Assuming your session stores user ID
 $UserID = $_SESSION['UserID'];

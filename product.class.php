@@ -2,6 +2,7 @@
 
 // include ('db_credentials.php'); 
 
+
 /* 
  * This class is used for database related operations (connect and fetch) 
  */ 
@@ -12,6 +13,8 @@ class Product{
     private $dbPassword = DB_PASS; 
     private $dbName     = DB_NAME; 
     private $tblName    = 'products'; 
+
+    private $db;
      
     public function __construct(){ 
         if(!isset($this->db)){ 

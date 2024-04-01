@@ -2,9 +2,10 @@
 
   require_once('db_credentials.php');
 
-  function db_connect() {
-    $connection = mysqli_connect("localhost", "avayawing", "marketplace-assingment2", "marketplace");
+  function db_connect($server , $user_name , $password , $db_name) {
+    $connection = mysqli_connect($server, $user_name , $password , $db_name);
     confirm_db_connect();
+    // echo "connected successfulllllllly";
     return $connection;
   }
 
@@ -28,5 +29,5 @@
     	exit("Database query failed.");
     }
   }
-
+  $conn = db_connect(DB_SERVER , DB_USER , DB_PASS , DB_NAME);
 ?>

@@ -6,14 +6,14 @@
     <!-- Adding Styles -->
     <link rel="stylesheet" href="style.css">
       <!-- Adding Javascript -->
-      <script src="signUpValidation.js" defer></script>
+      <script src="js/login.js" defer></script>
     <title>Log In</title>
 </head>
 <body class="loginSignUpBody">
     
     <div class="loginSignUpWrapper">
 
-        <div class="closeLoginSignUp"><a href="./index.php">X</a></div>
+        <div class="closeLoginSignUp"><a href="index.php">X</a></div>
 
         <div class="formLoginSignUp">
             <h2>Login</h2>

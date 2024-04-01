@@ -1,9 +1,9 @@
 <?php 
 // Include configuration file 
 require_once 'db_credentials.php'; 
- 
+
 // Include User class 
-require_once 'Product.class.php'; 
+require_once 'product.class.php'; 
  
 // Initialize User class 
 $product = new Product(); 
@@ -18,35 +18,52 @@ if(!empty($_POST['keywords'])){
 } 
  
 // If filter request is submitted 
-if(!empty($_POST['filter'])){ 
-    $sortVal = $_POST['filter']; 
-    $sortArr = array( 
-        'new' => array( 
-            'where' => 'ProductID DESC' 
-        ), 
-        'old'=>array( 
-            'where'=>'ProductID ASC' 
-        ), 
-        'price'=>array( 
-            'where'=>'Price DESC' 
-        )
-    ); 
-    $sortKey = key($sortArr[$sortVal]); 
-    $conditions[$sortKey] = $sortArr[$sortVal][$sortKey]; 
-} 
+// if(!empty($_POST['filter'])){ 
+//     $sortVal = $_POST['filter']; 
+//     $sortArr = array( 
+//         'new' => array( 
+//             'ORDER BY' => 'ProductID DESC' 
+//         ), 
+//         'old'=>array( 
+//             'ORDER BY'=>'ProductID ASC' 
+//         ), 
+//         'price'=>array( 
+//             'ORDER BY'=>'Price DESC' 
+//         )
+//     ); 
+//     $sortKey = key($sortArr[$sortVal]); 
+//     $conditions[$sortKey] = $sortArr[$sortVal][$sortKey]; 
+// } 
+
+if(!empty($_POST['filter'])){
+    $filter = $_POST['filter'];
+
+    switch ($filter) {
+    case "new":
+        $conditions['order_by'] = 'ProductID DESC ';
+        break;
+    case "old":
+        $conditions['order_by'] = 'ProductID ASC ';
+        break;
+    case "price":
+        $conditions['order_by'] = 'Price DESC ';
+        break;
+    default:
+        $conditions['order_by'] = 'ProductID DESC ';
+    }
+    
+    
+}
 
 
 // If category request is submitted 
-// if (!empty($_POST['category'])) {
-//     $categoryId = $_POST['category']; // Assuming category IDs are integers
-    
-//     $categoryConditions = [
-//         'where' => ['CategoryID' => $categoryId]
-//     ];
+if (!empty($_POST['category'])) {
+    $categoryId = $_POST['category']; // Assuming category IDs are integers
 
-//     // Merge the category conditions with existing conditions
-//     $conditions =$categoryConditions;
-// }
+    
+    // Merge the category conditions with existing conditions
+    $conditions['where'] = array('CategoryID' => $categoryId);
+}
 // Get members data based on search and filter 
 
 $products = $product->getRows($conditions); 
