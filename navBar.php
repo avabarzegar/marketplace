@@ -6,10 +6,10 @@
     <input type="checkbox" name="" id="chk1">
     <h1 class="logo">AlgoBuy</h1>
     <div class="searchBar">
-        <form action="GET" action="index.php" enctype="multipart/form-data">
-            <input type="text" name="search" id="search" placeholder="Search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+       
+            <input type="text" name="search" onchange="searchFilter();" id="search" placeholder="Search">
+            <button  type="button"><i class="fa fa-search"></i></button>
+       
     </div>
     <nav class="navigation">
         <div class="log-btn">
