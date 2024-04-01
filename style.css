@@ -163,8 +163,10 @@ i{
 }
 
 .navHeader .searchBar{
-    flex: 1;
+    flex: 1; 
     position: relative;
+    min-width: 200px; /*set min so that search bar does not lose functionality at smaller widths on a computer screen*/
+    margin-left: 6%; /*relative unit to center search bar and create equally-spaced navbar. */
 }
 
 .searchBar input{
@@ -183,13 +185,13 @@ i{
 
 .searchBar button{
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 31px;
+    height: 31px;
     border-radius: 30px;
     border-color: #66FCF1;
     position: absolute;
-    top: -2px;
-    left: -1px;
+    top: 4px;
+    left: 0px;
     transform: scale(0.9);
     background: #000000;
     color: #fff;
@@ -236,7 +238,7 @@ i{
 
 .navHeader .menu{
     font-size: 2.5em;
-    display: none;
+    display: flex;
 }
 
 /** LOGIN AND SIGNUP**/
@@ -389,6 +391,42 @@ i{
     height: 480px;
 }
 
+/* used for responsiveness for smaller screens. Is hidden for larger screens */
+.fa-bars{
+    display: none;
+    
+}
+
+/* hidden until smaller screen views webpage */
+.megaMenu{
+    display: none;
+    
+}
+
+/* Creating a mega menu to stand in for horizontal links when using smaller screen sizes -Se-Wing*/
+@media screen and (max-width:768px){ 
+    
+    .fa-bars{
+        display: block;
+        padding-right: 30px;
+        position: relative;
+    }
+
+    /* hides three links so they can be replaced by fa-bars icon */
+    .log-btn{
+        display: none;
+    }
+
+    /* displays drop down menu when fa-bars icon is clicked */
+    #chk1:checked ~ .menu #megaMenu { 
+        display:block;
+        position:absolute;
+        font-size: 1em;
+        top: 10%;
+        transform: translateX(-70%);
+    }
+}
+
 /* FOOTER */
 
 .footerBody{
@@ -404,6 +442,7 @@ footer{
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
 }
 
 .footerContent h3{
@@ -414,7 +453,6 @@ footer{
     text-align: center;
     margin: 5px;
     font-weight: 600;
-
 }
 
 .footerContent p{
@@ -429,9 +467,19 @@ footer{
 .footerCopyRight{
     background: rgba(0, 0, 0, 0.5);
     opacity: 100%;
-    width: 100vw;
+    width: 98vw; /* The width set at 100vw was causing the unecessary horizontal scroll -Se-Wing */
     padding: 5px 0;
     text-align: center;
+}
+
+@media screen and (max-width: 820px){
+    .footerCopyRight{
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 100%;
+        width: 80vw; /* The width set at 100vw was causing the unecessary horizontal scroll -Se-Wing */
+        padding: 5px 0;
+        text-align: center;
+    }
 }
 
 .footerCopyRight p{
@@ -523,7 +571,7 @@ footer{
 input[type="text"], textarea {
     width: 100%;
     padding: 10px;
-    color: white;
+    color: #1f8b15;
     margin: 5px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -631,7 +679,7 @@ input[type="submit"]:hover {
         margin-right: 20px;
     }
     .searchBar input {
-        width: 75%;
+        width: 100%;
     }
 }
 
@@ -641,6 +689,9 @@ input[type="submit"]:hover {
         flex: 1 1 100%; 
     }
 }
+
+
+
 
 
 

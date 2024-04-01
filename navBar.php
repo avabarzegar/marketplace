@@ -17,7 +17,7 @@
             session_start();
             if (isset($_SESSION['UserID'])){
                 echo '<a class-"buttonLoginPopUp" href="index.php">Market</a>';
-                echo '<a class-"buttonLoginPopUp" href="user_profile.php">Your Listings</a>';
+                echo '<a class-"buttonLoginPopUp" href="user_profile.php">Account</a>';
                 echo '<a class-"buttonLoginPopUp" href="logout_process.php">Logout</a>';
             } else {
                 echo '<a class-"buttonLoginPopUp" href="index.php">Market</a>';
@@ -28,8 +28,22 @@
             </div>
     </nav>
     <div class="menu">
-        <label for="chk1">
+        <label for="chk1" id="menuDropDown">
             <i class="fa fa-bars"></i>
         </label>
+        <ul class="megaMenu" id=megaMenu>
+        <?php
+            if (isset($_SESSION['UserID'])){
+                echo '<li><a class="buttonLoginPopUp" href="index.php">Market</a></li>';
+                echo '<li><a class="buttonLoginPopUp" href="user_profile.php">Account</a></li>';
+                echo '<li><a class="buttonLoginPopUp" href="logout_process.php">Logout</a></li>';
+            } else {
+                echo '<li><a class="buttonLoginPopUp" href="index.php">Market</a></li>';
+                echo '<li><a class="buttonLoginPopUp" href="log.php">Login</a></li>';
+                echo '<li><a class="buttonLoginPopUp" href="sign.html"> SignUp</a></li>';
+            }
+            ?>
+        </ul>
     </div>
 </header>
+
