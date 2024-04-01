@@ -74,58 +74,24 @@ function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// Search functionality
 
-// $(document).ready(function () {
-//     // Search functionality
-//     $('#search').on('keyup', function (e) {
-//         let text = $(this).val();
-//         $.ajax({
-//             type: 'GET',
-//             url: 'search.php', // Change the URL to the PHP file handling search
-//             data: { search: text }, // Send search query as data
-//             success: function (data) {
-//                 $('#products').html(data); // Replace content of #products with search results
-//             }
-//         });
-//     });
+function searchFilter() {
 
-//    // Filter functionality 
-// // Listen for changes in the select dropdown
-// $('#sort-by-select').change(function() {
-//     var sortBy = $(this).val(); // Get the selected option value
-
-//     // Make AJAX request to fetch sorted data
-//     $.ajax({
-//         url: 'filter.php',
-//         type: 'GET',
-//         data: { sort_by: sortBy }, // Pass the sort_by parameter here
-//         dataType: 'json',
-//         success: function(data) {
-//             // Update HTML content with sorted data
-//             $('#products').html('');
-//             $.each(data, function(index, item) {
-//                 $('#products').append('<div>' + item.Title + ' - ' + item.Price + '</div>');
-//             });
-//         },
-//         error: function(xhr, status, error) {
-//             console.error(xhr.responseText);
-//         }
-//     });
-// });
+    var cat = '';
+    if ($('#categoryOptions:checked').val()) {
+        cat = '&category=' + $('#categoryOptions:checked').val();
+    }
+    var idata = 'keywords=' + $('#search').val() + '&filter=' + $('#filterSelect').val() + cat;
 
 
-// });
-
-function searchFilter(){
     $.ajax({
         type: 'POST',
         url: 'filter.php',
-        data: 'keywords='+$('#search').val()+'&filter='+$('#filterSelect').val()+'&category='+$('#categoryOptions'),
-        beforeSend: function(){
+        data: idata,
+        beforeSend: function () {
             $('.loading-overlay').show();
         },
-        success:function(html){
+        success: function (html) {
             $('.loading-overlay').hide();
             $('#products').html(html);
         }

@@ -5,27 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Adding Styles -->
     <link rel="stylesheet" href="style.css">
-    <!-- Adding Javascript -->
-    <script src="signUpValidation.js" defer></script>
+      <!-- Adding Javascript -->
+      <script src="js/login.js" defer></script>
     <title>Log In</title>
 </head>
 <body class="loginSignUpBody">
     
     <div class="loginSignUpWrapper">
 
-        <div class="closeLoginSignUp"><a href="./index.php">X</a></div>
+        <div class="closeLoginSignUp"><a href="index.php">X</a></div>
 
         <div class="formLoginSignUp">
             <h2>Login</h2>
-            <form action="login_process.php" method="post" id="loginForm">
-                <div class="loginSignUpInput">
-                    <input type="email" name="emailName" id="emailID">
-                    <label class="label" for="email">Email</label>
+            <form action="login_process.php" method="post" id="loginForm" onsubmit="return validateLogin();">
+                <div class="textfield loginSignUpInput">
+                <label class="label" for="loginEmail">Email</label>
+                    <input type="email" name="emailName" id="loginEmail">
+                    
                 </div>
 
-                <div class="loginSignUpInput">
-                    <input type="password" name="passwordName" id="passwordID">
-                    <label class="label" for="password">Password</label>
+                <div class="textfield loginSignUpInput">
+                <label class="label" for="loginPass">Password</label>
+                    <input type="password" name="passwordName" id="loginPass">
+                    
                 </div>
 
                 <button type="submit" class="loginBtn">Login</button>
@@ -37,5 +39,6 @@
         </div>
     </div>
 
+  
 </body>
 </html>

@@ -9,17 +9,19 @@
 </head>
 <body id="newListingBody">
     <?php include("navBar.php");
-    require_once('db_credentials.php');
+    // require_once('db_credentials.php');
     require_once('database.php');
 
-    $db = db_connect();
+    // $conn = db_connect(DB_SERVER , DB_USER , DB_PASS , DB_NAME);
 
     //fetching categories from db
     $categoriesQuery = "SELECT * FROM categories";
-    $categoriesQueryResult = mysqli_query($db, $categoriesQuery);
+    $categoriesQueryResult = mysqli_query($conn, $categoriesQuery);
     
     //handles form submission, everythign submitted will turn up on the db
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // print_r($_FILES);
+        // die();
         $title = $_POST['title'];
         $categoryID = $_POST['category'];
         $price = $_POST['price'];
@@ -84,7 +86,7 @@
                     <input type="text" id="location" name="location" required>
                 </div>
                 <div class="image-upload-container">
-                    <input type="file" id="image" name="image" accept="image/*" class="image-upload">
+                    <input type="file" id="image" name="product_image" accept="image/*" class="image-upload">
                     <img src="https://via.placeholder.com/150" alt="Upload Image" class="image-upload">
                     <label class="image-upload-label" for="image">Choose Image</label>
                 </div>

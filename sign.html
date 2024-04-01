@@ -6,7 +6,7 @@
     <!-- Adding Styles -->
     <link rel="stylesheet" href="style.css">
     <!-- Adding Javascript -->
-    <script src="signUpValidation.js" defer></script>
+    <script src="js/signup.js" defer></script>
     <title>Sign Up</title>
 </head>
 <body>
@@ -14,30 +14,33 @@
     
         <div class="loginSignUpWrapper" id="signUpWrapper">
     
-            <div class="closeLoginSignUp"><p><a href="./index.php">X</a></p></div>
+            <div class="closeLoginSignUp"><p><a href="index.php">X</a></p></div>
     
             <div class="formLoginSignUp">
                 <h2>Sign Up</h2>
-                <form action="signup_process.php" method="POST" id="signupForm">
-                    <div class="loginSignUpInput">
-                        <input type="text" name="username" id="userName" value="jgh">
-                        <label class="label" for="usernameName">Username</label>
+                <form action="signup_process.php" method="POST" id="signupForm" onsubmit="return validateSign()">
+                    <div class="textfield loginSignUpInput">
+                        <label class="label" for="userName">Username</label>
+                        <input type="text" name="username" id="userName">
+                        
                     </div>
 
-                    <div class="loginSignUpInput">
-                        <input type="email" name="email" id="email" >
+                    <div class="textfield loginSignUpInput">
                         <label class="label" for="email">Email</label>
+                        <input type="email" name="email" id="email" >
+                      
                     </div>
     
-                    <div class="loginSignUpInput">
+                    <div class="textfield loginSignUpInput">
+                        <label class="label" for="pass">Password</label>
                         <input type="password" name="pass" id="pass">
-                        <label class="label" for="password">Password</label>
+                       
                     </div>
     
                     <button type="submit" class="signUpBtn">Sign Up</button>
                     <div class="noAccount">
                         <p id="noAccountText">You Have an account?</p>
-                        <a href="./log.php" class="LoginSignUpLink">Login</a>
+                        <a href="log.php" class="LoginSignUpLink">Login</a>
                     </div>
                 </form>
             </div>

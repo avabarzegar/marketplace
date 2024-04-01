@@ -1,7 +1,6 @@
 
 <header class="navHeader">
-    <!-- code for search functionality -->
-    <?php include('search.php'); ?>
+   
     <!-- Check session status -->
     <input type="checkbox" name="" id="chk1">
     <h1 class="logo">AlgoBuy</h1>

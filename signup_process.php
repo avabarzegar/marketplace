@@ -1,18 +1,8 @@
 <?php
-// Establish database connection
-$servername = "localhost";
-$username = "avayawing";
-$password = "marketplace-assingment2";
-$dbname = "marketplace";
+
 session_start();
+require_once('database.php');
 
-// Define database connection constants
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Escape user inputs to prevent SQL injection
     $username = $conn->real_escape_string($_POST['username']);
