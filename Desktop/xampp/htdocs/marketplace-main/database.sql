@@ -23,7 +23,7 @@ CREATE TABLE categories (
 DROP TABLE products;
 
 CREATE TABLE products (
-    ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    ProductsID INT PRIMARY KEY AUTO_INCREMENT,
     Title VARCHAR(255),
     Price DECIMAL(10, 2),
     CategoryID INT,
@@ -36,9 +36,9 @@ CREATE TABLE products (
 -- Create images table with a single image per listing
 CREATE TABLE images (
     ImageID INT PRIMARY KEY AUTO_INCREMENT,
-    ProductID INT UNIQUE,
+    ProductsID INT UNIQUE,
     ImageURL VARCHAR(255),
-    FOREIGN KEY (ProductID) REFERENCES products(ProductID)
+    FOREIGN KEY (ProductsID) REFERENCES products(ProductsID)
 );
 
 -- relationships:

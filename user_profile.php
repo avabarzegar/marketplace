@@ -1,8 +1,8 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+ 
 // Check if user is logged in
 if (!isset($_SESSION['UserID'])) {
     // Redirect to login page or handle unauthorized access
@@ -10,7 +10,7 @@ if (!isset($_SESSION['UserID'])) {
     exit(); // Stop script execution
 }
 
-require_once('database.php');
+require_once 'database.php';
 
 // Assuming your session stores user ID
 $UserID = $_SESSION['UserID'];
@@ -59,30 +59,42 @@ if ($products_result && mysqli_num_rows($products_result) > 0) {
     <title>User Profile</title>
 </head>
 <body>
-    <?php include("navBar.php") ?>
+   <?php
+   include('navBar.php');
+   ?>
     <section class="listingPageContainer">
     <div class="userProfilePage">
         <div class="userProfileSidebar">
             <h2>Your Information</h2>
             <p><strong>Name:</strong> <?php echo $users['Name']; ?></p>
             <p><strong>Email:</strong> <?php echo $users['Email']; ?></p>
-            <a href="createListing.php"><button id="newListingButton">Create New Listing</button></a>';
+            <a href="createListing.php"><button id="newListingButton">Create New Listing</button></a>
         </div>
 
     <div class="userProfileMainContent">
         <div class="container productCardsContainer">
                 <?php if (!empty($products)) : ?>
                     <?php foreach ($products as $product) : ?>
+                        
                         <div class="col productCard">
-                            <img src="<?php echo $product['ImageURL']; ?>" alt="<?php echo $product['Title']; ?>">
+                            <?php
+                            // Fetching image URL for the current product
+                            $image_sql = "SELECT ImageURL FROM images WHERE ProductsID = {$product['ProductsID']}";
+                            $image_result = mysqli_query($conn, $image_sql);
+                            $image_product = mysqli_fetch_assoc($image_result);
+                            ?>
+                            <img src="<?php echo $image_product['ImageURL']; ?>" alt="<?php echo $product['Title']; ?>">
                             <div class="productDetails">
                                 <h3><?php echo $product['Title']; ?></h3>
                                 <p><strong>Price:</strong> <?php echo $product['Price']; ?></p>
                                 <p><strong>Category:</strong> <?php echo $product['category_name']; ?></p>
                                 <p><strong>Location:</strong> <?php echo $product['Location']; ?></p>
                                 <div class="productButtons">
-                                    <a href="editProduct.php?productID=<?php echo $product['ProductsID']; ?>"><button>Edit</button></a> <!--Corrected primary keys that prevented loading. ProductID -> ProductsID - Se-Wing-->
-                                    <button onclick="confirmDelete(<?php echo $product['ProductsID']; ?>)">Delete</button>  <!--Corrected primary keys that prevented loading. -Se-Wing-->
+                                    <a href="editProduct.php?ProductsID=<?php echo $product['ProductsID']; ?>"><button>Edit</button></a> <!--Corrected primary keys that prevented loading. ProductID -> ProductsID - Se-Wing-->
+                                    <form method="post" action="deleteProduct.php" class="productButtons">
+                                        <input type="hidden" name="ProductsID" value="<?php echo $product['ProductsID']; ?>">
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

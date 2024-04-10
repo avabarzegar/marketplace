@@ -43,7 +43,7 @@ CREATE TABLE `listings` (
 
 -- Create products table
 CREATE TABLE `products` (
-    `ProductID` INT PRIMARY KEY AUTO_INCREMENT,
+    `ProductsID` INT PRIMARY KEY AUTO_INCREMENT,
     `Title` VARCHAR(255),
     `Price` DECIMAL(10, 2),
     `CategoryID` INT,
@@ -56,10 +56,10 @@ CREATE TABLE `products` (
 -- Create images table with a single image per listing
 CREATE TABLE `images` (
     `ImageID` INT PRIMARY KEY AUTO_INCREMENT,
-    `ProductID` INT,
+    `ProductsID` INT,
     `ListingID` INT,
     `ImageURL` VARCHAR(255),
-    FOREIGN KEY (`ProductID`) REFERENCES `products`(`ProductID`),
+    FOREIGN KEY (`ProductsID`) REFERENCES `products`(`ProductsID`),
     FOREIGN KEY (`ListingID`) REFERENCES `listings`(`ListingID`)
 );
 

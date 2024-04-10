@@ -15,7 +15,7 @@ include 'db_connect.php';
 
 // Fetch products from the database (replace this with your actual database query)
 $query = "SELECT * FROM products";
-$result = mysqli_query($connection, $query);
+$result = mysqli_query($conn, $query);
 
 // Loop through the fetched products and generate HTML content
 while ($row = mysqli_fetch_assoc($result)) {

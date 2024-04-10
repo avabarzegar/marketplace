@@ -1,7 +1,8 @@
 <?php
-
 session_start();
+// Establish database connection
 require_once('database.php');
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Escape user inputs to prevent SQL injection

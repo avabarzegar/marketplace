@@ -19,14 +19,14 @@
             <h2>Login</h2>
             <form action="login_process.php" method="post" id="loginForm" onsubmit="return validateLogin();">
                 <div class="textfield loginSignUpInput">
-                <label class="label" for="loginEmail">Email</label>
-                    <input type="email" name="emailName" id="loginEmail">
+                <label class="label" for="emailID">Email</label>
+                    <input type="email" name="emailName" id="emailID">
                     
                 </div>
 
                 <div class="textfield loginSignUpInput">
-                <label class="label" for="loginPass">Password</label>
-                    <input type="password" name="passwordName" id="loginPass">
+                <label class="label" for="passwordID">Password</label>
+                    <input type="password" name="passwordName" id="passwordID">
                     
                 </div>
 

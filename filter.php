@@ -1,6 +1,6 @@
 <?php 
 // Include configuration file 
-require_once 'db_credentials.php'; 
+require_once 'database.php';
 
 // Include User class 
 require_once 'product.class.php'; 
@@ -10,46 +10,29 @@ $product = new Product();
  
 // Define filters 
 $conditions = array(); 
-// $db = db_connect();
+
  
 // If search request is submitted 
 if(!empty($_POST['keywords'])){ 
     $conditions['search'] = array('Title' => $_POST['keywords']); 
 } 
- 
-// If filter request is submitted 
-// if(!empty($_POST['filter'])){ 
-//     $sortVal = $_POST['filter']; 
-//     $sortArr = array( 
-//         'new' => array( 
-//             'ORDER BY' => 'ProductID DESC' 
-//         ), 
-//         'old'=>array( 
-//             'ORDER BY'=>'ProductID ASC' 
-//         ), 
-//         'price'=>array( 
-//             'ORDER BY'=>'Price DESC' 
-//         )
-//     ); 
-//     $sortKey = key($sortArr[$sortVal]); 
-//     $conditions[$sortKey] = $sortArr[$sortVal][$sortKey]; 
-// } 
+
 
 if(!empty($_POST['filter'])){
     $filter = $_POST['filter'];
 
     switch ($filter) {
     case "new":
-        $conditions['order_by'] = 'ProductID DESC ';
+        $conditions['order_by'] = 'ProductsID DESC ';
         break;
     case "old":
-        $conditions['order_by'] = 'ProductID ASC ';
+        $conditions['order_by'] = 'ProductsID ASC ';
         break;
     case "price":
         $conditions['order_by'] = 'Price DESC ';
         break;
     default:
-        $conditions['order_by'] = 'ProductID DESC ';
+        $conditions['order_by'] = 'ProductsID DESC ';
     }
     
     
@@ -75,12 +58,12 @@ if(!empty($products)){ $i = 0;
 
 <?php
 // Fetching image URL for the current product
-// $image_sql = "SELECT ImageURL FROM images WHERE ProductID = {$row['ProductID']}";
-// $image_result = mysqli_query($db, $image_sql);
-// $image_row = mysqli_fetch_assoc($image_result);
-// ?>
+$image_sql = "SELECT ImageURL FROM images WHERE ProductsID = {$row['ProductsID']}";
+$image_result = mysqli_query($conn, $image_sql);
+$image_row = mysqli_fetch_assoc($image_result);
+?>
 
-
+<img src="<?php echo $image_row['ImageURL']; ?>" alt="<?php echo $row['Title']; ?>">
 <p><?php echo $row['Title'] ?></p>
 <p><?php echo $row['Price'] ?></p>
 <p><?php echo $row['Location'] ?></p>

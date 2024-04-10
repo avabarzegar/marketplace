@@ -21,9 +21,9 @@
                 <?php echo $category['Name']; ?>
             </div>
             <?php } ?>
+
+            <!-- <button onclick="resetFilter();">Reset</button> -->
           
-<!--         
-        <p class="side-li">Price</p> -->
         
     </aside>
  

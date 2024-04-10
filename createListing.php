@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
-    <title>Create New Listing - Facebook Marketplace</title>
+    <title>Create New Listing</title>
 
 </head>
 <body id="newListingBody">
-    <?php include("navBar.php");
-    // require_once('db_credentials.php');
+    <?php 
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+    include("navBar.php");
     require_once('database.php');
-
-    // $conn = db_connect(DB_SERVER , DB_USER , DB_PASS , DB_NAME);
+    
+    
 
     //fetching categories from db
     $categoriesQuery = "SELECT * FROM categories";
@@ -20,44 +24,107 @@
     
     //handles form submission, everythign submitted will turn up on the db
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // print_r($_FILES);
-        // die();
         $title = $_POST['title'];
         $categoryID = $_POST['category'];
         $price = $_POST['price'];
         $location = $_POST['location'];
-        //$image = $_POST['image']; //DELETE?
+       
+        // upload image
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
+        // echo "<script>alert('".$target_file."');</script>";
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-        /* Add variables to take into account image upload. Images are uploaded via $_FILE and not $_POST. 
-        $folder is image folder. -Se-Wing  */
-        $file_name = $_FILES['image']['name'];
-        $tempname = $_FILES['image']['tmp_name'];
-        $folder = 'images/'.$file_name;
-
-        if(move_uploaded_file($tempname, $folder)) { //temporary name for when image is submitted.
-
-            $imageURL = mysqli_real_escape_string($db, $folder); //escapes special characters so reduce vulnerabilities.
-            $query = "INSERT INTO images (imageURL) VALUES ('$imageURL')"; //URL for image is inserted into images table under imageURL column. -Se-Wing
-        
-            if(mysqli_query($db, $query)) {
-                $last_inserted_id = mysqli_insert_id($db);
-        
-            // Insert listing into the database
-        $insert_query = "INSERT INTO products (Title, Price, CategoryID, UserID, Location, ImageURL)
-        VALUES ('$title', '$price', '$categoryID', '{$_SESSION['UserID']}', '$location', '$imageURL')"; //Corrected imageURL to $imageURL -Se-Wing
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["product_image"])) {
+            $check = getimagesize($_FILES["product_image"]["tmp_name"]);
+            if($check !== false) {
+                // echo "File is an image - " . $check["mime"] . ".";
+                // echo "<script>alert('File is an image - " . $check["mime"] . ".');</script>";
+                $uploadOk = 1;
+            } else {
+                // echo "File is not an image.";
+                echo "<script>alert('File is not an image.');</script>";
+                $uploadOk = 0;
             }
-        $result = mysqli_query($db, $insert_query);
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            $target_file = $target_dir . time() . basename($_FILES["product_image"]["name"]);
+            // echo "Sorry, file already exists.";
+            // echo "<script>alert('Sorry, product image already exists.');</script>";
+            // $uploadOk = 0;
+        }
+
+        // Check file size
+        if ($_FILES["product_image"]["size"] > 5000000) {
+            // echo "Sorry, your file is too large.";
+            echo "<script>alert('Sorry, your image is too large.');</script>";
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+            // echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');</script>";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+        // echo "Sorry, your file was not uploaded.";
+        echo "<script>alert('Sorry, your image was not uploaded.');</script>";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
+                // $product_image_name = htmlspecialchars( basename( $_FILES["product_image"]["name"]));
+                $product_image_name = $target_file;
+            } else {
+                // echo "Sorry, there was an error uploading your file.";
+                echo "<script>alert('Sorry, there was an error uploading your image.');</script>";
+            }
+        }
+
+        // echo "<script>alert('".."');</script>";
+        
+
+
+
+
+
+        // Insert listing into the database
+        $insert_query = "INSERT INTO products (Title, Price, CategoryID, UserID, Location)
+        VALUES ('$title', '$price', '$categoryID', '{$_SESSION['UserID']}', '$location')";
+
+        $result = mysqli_query($conn, $insert_query);
         if ($result) {
-        // Listing added successfully
-        echo "<script>alert('Listing added successfully');</script>";
-        }} else {
-        // Error adding listing
-        echo "<script>alert('Error adding listing');</script>";
+            $last_id = mysqli_insert_id($conn);
+            $insert_query_image = "INSERT INTO `images`(`ProductsID`, `ImageURL`)
+            VALUES ('$last_id', '$product_image_name')";
+            $image_result = mysqli_query($conn, $insert_query_image);
+            if ($image_result) {
+                // Listing added successfully
+                echo "<script>alert('Listing added successfully');</script>";
+            }
+            else {
+                // Error adding listing
+                echo "<script>alert('Error adding listing');</script>";
+            }
+        }
+        else {
+            // Error adding listing
+            echo "<script>alert('Error adding listing');</script>";
         }
     }
     ?>
 
-    <div class="newListingFormContainer">
+
+
+   
+<div class="newListingFormContainer">
         <h2 id="newListingh2">Create New Listing</h2>
         <form action="#" method="post" enctype="multipart/form-data">
             <div class="newListingContainer">
@@ -94,5 +161,6 @@
             <input class="submitNewListing" type="submit" value="Create Listing">
         </form>
     </div>
+    <?php include("footer.html"); ?>
 </body>
 </html>

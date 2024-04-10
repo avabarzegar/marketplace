@@ -5,15 +5,18 @@
     <input type="checkbox" name="" id="chk1">
     <h1 class="logo">AlgoBuy</h1>
     <div class="searchBar">
-       
+    
             <input type="text" name="search" onchange="searchFilter();" id="search" placeholder="Search">
             <button  type="button"><i class="fa fa-search"></i></button>
-       
     </div>
     <nav class="navigation">
         <div class="log-btn">
+
+       
             <?php
-            session_start();
+             if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
             if (isset($_SESSION['UserID'])){
                 echo '<a class-"buttonLoginPopUp" href="index.php">Market</a>';
                 echo '<a class-"buttonLoginPopUp" href="user_profile.php">Account</a>';
@@ -26,6 +29,7 @@
             ?>
             </div>
     </nav>
+    
     <div class="menu">
         <label for="chk1" id="menuDropDown">
             <i class="fa fa-bars"></i>

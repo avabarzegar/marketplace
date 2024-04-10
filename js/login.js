@@ -1,8 +1,8 @@
 
 
 var formLogin = document.getElementById('loginForm');
-var emailLogin = document.getElementById('loginEmail');
-var passwordLogin = document.getElementById('loginPass');
+var emailLogin = document.getElementById('emailID');
+var passwordLogin = document.getElementById('passwordID');
 // Create paragraph for displaying email warning
 let logEmailError = document.createElement('p');
 // Create paragraph for displaying password 1 warning
@@ -57,7 +57,7 @@ function logValidateEmail() {
     let emailInput = emailLogin.value;
     let regexp = /\S+@\S+\.\S+/;
 
-    if (regexp.test(emailInput) && emailInput.trim().length > 0) {
+    if (emailInput.trim().length > 0) {
         error = defaultMsg;
     } else {
         error = "\u2716 Email address should be non-empty with the format (xyx@xyz.xyz).";
@@ -71,7 +71,7 @@ function logValidatePass() {
     let password = passwordLogin.value;
     let regexp = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
-    if (regexp.test(password) && password.trim().length >= 8) {
+    if (password.trim().length > 0) {
         error = defaultMsg;
     } else {
         error = "\u2716 Your password should be at least 8 characters: 1 uppercase, 1 lowercase.";

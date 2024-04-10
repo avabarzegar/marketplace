@@ -1,25 +1,30 @@
-this is deleteProduct.php: 
-<?php include('db-connection.php'); //this is working ?> 
-
 <?php
-    $ProductsID = $_POST['ProductsID'];
+include('database.php');
 
-    // Prepare and execute deletion query
-    $delete_query = "DELETE FROM products WHERE ProductsID = ?";
-    $stmt = $conn->prepare($delete_query);
-    $stmt->bind_param("i", $ProductsID);
-    
-    if ($stmt->execute()) {
-        // Product deleted successfully
-        header("Location: user_profile.php");
-        exit();
+$ProductsID = $_POST['ProductsID'];
 
-    $stmt->close();
-    $conn->close();
-    } else {
-    // Handle invalid request
+// Delete associated images first
+$delete_images_query = "DELETE FROM images WHERE ProductsID = ?";
+$stmt_images = $conn->prepare($delete_images_query);
+$stmt_images->bind_param("i", $ProductsID);
+$stmt_images->execute();
+$stmt_images->close();
+
+// Prepare and execute deletion query for product
+$delete_product_query = "DELETE FROM products WHERE ProductsID = ?";
+$stmt_product = $conn->prepare($delete_product_query);
+$stmt_product->bind_param("i", $ProductsID);
+
+if ($stmt_product->execute()) {
+    // Product deleted successfully
     header("Location: user_profile.php");
     exit();
-    }
+} else {
+    // Handle invalid request or display error message
+    header("Location: user_profile.php?error=delete_failed");
+    exit();
+}
 
+$stmt_product->close();
+$conn->close();
 ?>

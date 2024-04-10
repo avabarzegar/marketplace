@@ -57,7 +57,7 @@ class Product{
     if (array_key_exists("order_by", $conditions)) {
         $sql .= ' ORDER BY ' . $conditions['order_by'];
     } else {
-        $sql .= ' ORDER BY ProductID DESC ';
+        $sql .= ' ORDER BY ProductsID DESC ';
     }
 
     if (array_key_exists("start", $conditions) && array_key_exists("limit", $conditions)) {

@@ -1,8 +1,11 @@
 <?php
 session_start();
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+// Establish database connection
+require_once ('database.php');
 
-require_once('database.php');
- 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $conn->real_escape_string($_POST['emailName']);
     $password = $conn->real_escape_string($_POST['passwordName']);

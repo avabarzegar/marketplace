@@ -31,12 +31,8 @@ $product = new Product();
 // Get members data from database 
 $products = $product->getRows(); 
     
-    // $conn = db_connect(DB_SERVER , DB_USER , DB_PASS , DB_NAME);
     require_once('database.php');
-    
-      // $sql = "SELECT * FROM products";
-      // $result_set = mysqli_query($conn, $sql);
-    
+
       // Fetch categories from the database
       $categoriesOptionsSql = "SELECT * FROM categories";
       $categoriesOptionsResult_set = mysqli_query($conn, $categoriesOptionsSql);
@@ -46,11 +42,13 @@ $products = $product->getRows();
     <main>
       <div class="userProfileMainContent">
         
-            <?php include ("dashboard.php") ?>
+            <?php include ("dashboard.php"); ?>
             
        
 <div class="productCardsContainer">
-<div class="loading-overlay" style="display: none;"><div class="overlay-content">Loading.....</div></div>
+  <div class="loading-overlay" style="display: none;">
+    <div class="overlay-content">Loading.....</div>
+  </div>
         <section class="container" id="products">
           <?php
         if(!empty($products)){ $i = 0; 
@@ -60,7 +58,7 @@ $products = $product->getRows();
 
             <?php
             // Fetching image URL for the current product
-            $image_sql = "SELECT ImageURL FROM images WHERE ProductID = {$row['ProductID']}";
+            $image_sql = "SELECT ImageURL FROM images WHERE ProductsID = {$row['ProductsID']}";
             $image_result = mysqli_query($conn, $image_sql);
             $image_row = mysqli_fetch_assoc($image_result);
             ?>
@@ -77,11 +75,11 @@ $products = $product->getRows();
        
         
         </section>
-        </div>
+       </div>
       </div>
     </main>   
     <!-- adding footer  -->
-    <?php include("footer.html") ?>
+    <?php include("footer.html"); ?>
 
 </body>
 </html>
