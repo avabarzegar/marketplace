@@ -1,3 +1,4 @@
+//  Developed by Fatemeh Barzegar and Se Wing Hunag
 
 // sidebar dropdown 
 const select = document.querySelector("aside .select");

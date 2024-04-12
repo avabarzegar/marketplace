@@ -1,3 +1,4 @@
+//  Developed by Fatemeh Barzegar and Se Wing Hunag
 
 
 var formLogin = document.getElementById('loginForm');

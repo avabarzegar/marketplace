@@ -1,3 +1,5 @@
+//  Developed by Fatemeh Barzegar and Se Wing Hunag
+
 // Declaring Variables 
 var form = document.getElementById('signupForm');
 var email = document.getElementById('email');
@@ -15,8 +17,7 @@ let passwordError = document.createElement('p');
 // to set a warning class attribute and append the created element to the parent of email div
 let errorElm = [nameError, emailError, passwordError];
 errorElm.map((item, index) => {
-    console.log(item);
-    console.log(document.querySelectorAll('.textfield')[index]);
+  
     if (document.querySelectorAll('.textfield')[index]) {
         item.setAttribute('class', 'warning');
         document.querySelectorAll('.textfield')[index].appendChild(item);

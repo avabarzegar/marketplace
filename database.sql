@@ -85,23 +85,3 @@ INSERT INTO `categories` (`Name`) VALUES
 ('Furniture'),
 ('Automotive'),
 ('Other');
-
--- Inserting some users
-INSERT INTO `users` (`Name`, `Email`, `Password`)
-VALUES
-('Aya', 'aya@gmail.com', '12345'),
-('Ava', 'ava@gmail.com', '12345');
-
--- Inserting Random values to products table
-INSERT INTO `products` (`Title`, `Price`, `CategoryID`, `UserID`, `Location`)
-VALUES
-('Laptop', 999.99, 1, 1, '123 Main St, Toronto, ON'), -- Electronics
-('T-Shirt', 19.99, 2, 1, '456 Elm St, Vancouver, BC'), -- Clothing
-('Book', 29.99, 3, 2, '789 Oak St, Montreal, QC'), -- Books
-('Sofa', 699.99, 4, 2, '321 Maple St, Calgary, AB'), -- Furniture
-('Jeans', 49.99, 2, 2, '555 Pine St, Ottawa, ON'), -- Clothing
-('Smartphone', 499.99, 1, 1, '777 Birch St, Edmonton, AB'), -- Electronics
-('Car', 19999.99, 5, 2, '888 Cedar St, Halifax, NS'), -- Automotive
-('Tire', 99.99, 5, 2, '999 Spruce St, Winnipeg, MB'), -- Automotive
-('Desk', 199.99, 6, 1, '111 Elm St, Saskatoon, SK'), -- Other
-('Hat', 9.99, 2, 2, '222 Birch St, Victoria, BC'); -- Clothing

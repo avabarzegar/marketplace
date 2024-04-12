@@ -24,9 +24,9 @@ button{
     background-color: var(--bg-color);
     color: white !important;
 }
-.indexBody{ /*should be index later */
+.indexBody{ 
     background-color: black;
-    background-size: cover; /* Image by flatart on Freepik: https://www.freepik.com/free-vector/abstract-blue-circle-black-background-technology_34386132.htm#query=dark%20website%20background&position=1&from_view=keyword&track=ais&uuid=33eaf209-ccdd-4e64-99d8-586b665f1733 */
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
     color: var(--txt-color);
@@ -377,7 +377,7 @@ i{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(images/navBg.jpg) no-repeat;
+    /* background: url(images/navBg.jpg) no-repeat; */
     background-size: cover;
     background-position: center;
 }
@@ -448,9 +448,9 @@ i{
 }
 
 .loginSignUpInput input:focus~label,
-.loginSignUpInput input:not(:placeholder-shown)~label, /* delete this later */
-.loginSignUpInput input:valid~label{ /* pass should be on top after validation but theres no validation rn, do validation then fix it*/
-    top: 5px; /* should be -5px, do it later when u do the validation*/
+.loginSignUpInput input:not(:placeholder-shown)~label, 
+.loginSignUpInput input:valid~label{ 
+    top: 5px; 
 }
 
 .loginSignUpInput input{
@@ -539,13 +539,21 @@ i{
     .log-btn{
         display: none;
     }
+    
+    .navHeader .menu{
+        display: block;
+    }
 
     /* displays drop down menu when fa-bars icon is clicked */
     #chk1:checked ~ .menu #megaMenu { 
-        display:block;
-        position:absolute;
+        transition: .2s height;
+        display: block;
+        position: absolute;
         font-size: 1em;
-        top: 10%;
+        padding: 2rem;
+        background: #484848;
+        list-style: none;
+        top: 7%;
         transform: translateX(-70%);
     }
 }
@@ -640,7 +648,7 @@ footer{
     color: #66FCF1;
     justify-content: center;
     align-items: center;
-    background: url(images/navBg.jpg) no-repeat;
+    /* background: url(images/navBg.jpg) no-repeat; */
 }
 
 .listingPageContainer{
@@ -780,7 +788,7 @@ input[type="submit"]:hover {
     color: #66FCF1;
     justify-content: center;
     align-items: center;
-    background: url(images/navBg.jpg) no-repeat;
+    /* background: url(images/navBg.jpg) no-repeat; */
 }
 .editListingInput{
     padding-left: 10px;
@@ -806,7 +814,7 @@ input[type="text"], textarea {
 
 /** RESPONSIVE **/
 
-@media(max-width:1040px){
+@media screen and (max-width:1040px){
     /** NAVBAR **/
     .searchBar button{
         position: absolute;
@@ -821,7 +829,7 @@ input[type="text"], textarea {
 
     .navHeader menu{
         display: block;
-        width: 100px;
+        width: 50px;
         text-align: center;
     }
     #chk1:checked ~ a{
