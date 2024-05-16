@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Adding Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <!-- Adding Javascript -->
+    <script src="../js/signup.js" defer></script>
+    <title>Sign Up</title>
+</head>
+<body>
+    <body class="loginSignUpBody">
+    
+        <div class="loginSignUpWrapper" id="signUpWrapper">
+    
+            <div class="closeLoginSignUp"><p><a href="../server/index.php">X</a></p></div>
+    
+            <div class="formLoginSignUp">
+                <h2>Sign Up</h2>
+                <form action="../server/authentication/signup_process.php" method="POST" id="signupForm" onsubmit="return validateSign()">
+                    <div class="textfield loginSignUpInput">
+                        <label class="label" for="userName">Username</label>
+                        <input type="text" name="username" id="userName">
+                        
+                    </div>
+
+                    <div class="textfield loginSignUpInput">
+                        <label class="label" for="email">Email</label>
+                        <input type="email" name="email" id="email" >
+                      
+                    </div>
+    
+                    <div class="textfield loginSignUpInput">
+                        <label class="label" for="pass">Password</label>
+                        <input type="password" name="pass" id="pass">
+                       
+                    </div>
+    
+                    <button type="submit" class="signUpBtn">Sign Up</button>
+                    <div class="noAccount">
+                        <p id="noAccountText">You Have an account?</p>
+                        <a href="../server/log.php" class="LoginSignUpLink">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+</html>
